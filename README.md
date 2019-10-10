@@ -5,4 +5,4 @@ All data for this project were extracted from indeed.com.
 
 ALtogether I've used roughly 1000 latest Data Scientist job postings and 1000 resumes of Data Scientists. No other restrictions were followed.
 
-I will update the visualizations.
+Report : https://github.com/ammarisme/survey-on-data-science-skills/blob/master/report.pdf
