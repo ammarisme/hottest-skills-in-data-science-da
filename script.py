@@ -161,8 +161,8 @@ def final_cleaning():
     
     file=open( "./skills_data.csv", "r")
     reader = csv.reader(file)
-    # hottest # ignoreList = ['testing' ,'jenkins','training' , "dynamics", 'javascript' , "marketing", 'recruitment' , 'publishing' , 'quantitative' ];
-    ignoreList = ['analytics' , 'quantitative'];
+    ignoreList = ['collection',  'operation'  ,'jenkins','training' , "dynamics", 'javascript' , "marketing", 'recruitment' , 'publishing' , 'quantitative' ];
+    #ignoreList = ['analytics' , 'quantitative'];
     
     final_array = [];
     for line in reader:
@@ -175,16 +175,18 @@ def final_cleaning():
         if(len(myStrArray) == 4 and not(myStrArray[0] in ignoreList)):
                 myStrArray[1] = float(myStrArray[1])
                 myStrArray[2] = float(myStrArray[2])
-                myStrArray[3] = (float(myStrArray[2])); #hottest skills
+                myStrArray[3] = (float(myStrArray[3]) / 6) * 100; #hottest skills
                 final_array.append(myStrArray);
                 
     return final_array
     
 def draw_chart(xlabel, ylabel , title, data):
     from collections import Counter
+    from matplotlib.pyplot import figure
+
     
     Counter = Counter(keywords)
-    most_occur = data[:10];
+    most_occur = data[:20];
     
     from collections import Counter
     import numpy as np
@@ -202,6 +204,7 @@ def draw_chart(xlabel, ylabel , title, data):
     width = 1
     
     
+    figure(num=None, figsize=(12, 6), dpi=80, facecolor='w', edgecolor='k')
     plt.xlabel(xlabel, fontsize=5)
     plt.ylabel(ylabel, fontsize=5)
     #plt.xticks(index, labels, fontsize=5, rotation=30)
@@ -217,5 +220,5 @@ skillSupply = final_cleaning()
 skillSupply.sort(key=hotness ,reverse = True)
 #draw_chart('Skills' , '% of CVS with the skill / Total CVs' , 'Most available skills in Data Science' , skillSupply)
 #draw_chart('Skills' , 'No. of Jobs / No. of CVs' , 'Hottest skills in Data Science' , skillSupply)
-draw_chart('Skills' , 'No. of Jobs' , 'Most sought out skills in Data Science' , skillSupply)
+draw_chart('Skills' , 'Hotness' , 'Hottest skills in Data Science right now and where am I among them' , skillSupply)
 
